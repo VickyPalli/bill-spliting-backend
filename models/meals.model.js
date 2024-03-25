@@ -2,20 +2,20 @@ const { Schema } = require("mongoose");
 const dbConnection = require("./dbbase.js");
 
 const mealsSchema = new Schema({
-  name: {
+  foodName: {
     type: String,
     required: true,
-  },
-  image: {
-    type: String,
   },
   price: {
     type: Number,
   },
-  description: {
+  foodType: {
     type: String,
-    required: true,
+  },
+  protein: {
+    type: String,
   },
 });
 
-export const MealsModel = dbConnection.model("meals", mealsSchema);
+MealsModel = dbConnection.model("meals", mealsSchema);
+module.exports = MealsModel;
