@@ -16,5 +16,9 @@ app.listen(PORT, () => {
   console.log("App is listening At", PORT);
 });
 
+app.get("/", (req, res) => {
+  res.send("App is running...");
+});
+
 //routes
 app.use("/api", apiRoutes);
