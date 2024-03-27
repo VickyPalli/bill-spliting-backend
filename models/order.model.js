@@ -6,9 +6,9 @@ const orderSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "users",
   },
-  OrderItemId: {
+  orderItemId: {
     type: Schema.Types.ObjectId,
-    ref: "orderItems",
+    ref: "meals",
   },
   bill: {
     type: Number,
@@ -18,4 +18,5 @@ const orderSchema = new Schema({
   },
 });
 
-export const OrderModel = dbConnection.model("orders", orderSchema);
+OrderModel = dbConnection.model("orders", orderSchema);
+module.exports = OrderModel;
