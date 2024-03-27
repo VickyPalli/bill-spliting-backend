@@ -10,6 +10,9 @@ const orderSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "meals",
   },
+  orderName: {
+    type: String,
+  },
   bill: {
     type: Number,
   },
