@@ -17,7 +17,7 @@ app.listen(PORT, () => {
 });
 
 app.get("/", (req, res) => {
-  res.send("App is running...");
+  res.send("Welcome to micro service....");
 });
 
 //routes
