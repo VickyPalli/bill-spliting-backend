@@ -1,0 +1,45 @@
+name: Deploy bill-spliting-backend on ec2 instance
+
+on:
+  push:
+    branches:
+      - staging
+      - release
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
+      - name: Add SSH Key
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Deploy to Staging Server
+        if: github.ref == 'refs/heads/staging'
+        run: |
+          ssh -o StrictHostKeyChecking=no ubuntu@18.207.236.245 << 'EOF'
+          cd /home/ubuntu/staging
+          git pull origin staging
+          npm install
+          pm2 reload 0
+          EOF
+
+      - name: Deploy to Production Server
+        if: github.ref == 'refs/heads/release'
+        run: |
+          ssh -o StrictHostKeyChecking=no ubuntu@18.207.236.245 << 'EOF'
+          cd /home/ubuntu/production
+          git pull origin release
+          npm install
+          pm2 reload 1
+          EOF
