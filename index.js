@@ -17,7 +17,7 @@ app.listen(PORT, () => {
 });
 
 app.get("/", (req, res) => {
-  res.send("Welcome to micro kJNDSjkadn sxkcjcjscn ervice....");
+  res.send("Welcome to production micro service....");
 });
 
 //routes
