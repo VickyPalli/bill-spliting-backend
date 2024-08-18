@@ -17,7 +17,7 @@ app.listen(PORT, () => {
 });
 
 app.get("/", (req, res) => {
-  res.send("Welcome to production modified code....");
+  res.send("Welcome to production modified code");
 });
 
 //routes
